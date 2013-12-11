@@ -46,7 +46,7 @@ class Comment(models.Model):
         
 class FavoriteArticle(models.Model):
     """A favorite Article of a User."""
-    thread = models.ForeignKey(Thread)
+    article = models.ForeignKey(Article)
     user = models.ForeignKey(User, related_name='user_favorite_article')
     added_at = models.DateTimeField(default=datetime.datetime.now)
 
