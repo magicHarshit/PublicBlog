@@ -14,7 +14,7 @@ class Article(models.Model):
     favorited_by = models.ManyToManyField(User, through='FavoriteArticle')
 
     closed = models.BooleanField(default=False)
-    closed_by = models.ForeignKey(User, null=True, blank=True) #, related_name='closed_questions')
+    closed_by = models.ForeignKey(User, null=True, blank=True)
     closed_at = models.DateTimeField(null=True, blank=True)
     close_reason = models.SmallIntegerField(
                                             choices=const.CLOSE_REASONS,
