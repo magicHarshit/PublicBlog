@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Django/Python Blog | {% block title %}{% endblock %}</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css">
+	<!--<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap3-theme.css">-->
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.min.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
+	<style type="text/css">
+	body {
+		padding-top: 70px;
+	}
+	</style>
+</head>
+<body>
+	<header>
+        {% load url from future %}
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-brand">
+					Blog
+				</div>		
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="{% url 'home' %}">Home</a></li>
+				</ul>
+				<ul class="nav navbar-nav pull-right">
+					{% if user.is_anonymous %}
+					<a href="{% url 'socialauth_begin' 'google-oauth2' %}">Login with Google</a>
+                    {% else %}
+					<li class="navbar-text">Welcome, {{ user }} </li>
+					<li><a href="{% url 'log_out' %}">Log out</a></li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+	</header>
+	<div class="container" name="content">
+		{% block content %}
+		{% endblock %}
+	</div>
+	<hr>
+	<footer>
+		<div class="container text-center">
+			<a href="#" target="_blank">GitHub Project</a>
+		</div>
+	</footer>
+</body>
+</html>
