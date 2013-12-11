@@ -11,7 +11,7 @@ class Article(models.Model):
     approved = models.BooleanField(default=False)
     view_count = models.PositiveIntegerField(default=0)
     favourite_count = models.PositiveIntegerField(default=0)
-    favorited_by = models.ManyToManyField(User, through='FavoriteArticle', related_name='unused_favorite_threads')
+    favorited_by = models.ManyToManyField(User, through='FavoriteArticle')
 
     closed = models.BooleanField(default=False)
     closed_by = models.ForeignKey(User, null=True, blank=True) #, related_name='closed_questions')
