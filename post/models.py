@@ -24,6 +24,11 @@ class Article(models.Model):
                                         )
     deleted = models.BooleanField(default=False, db_index=True)
     points = models.IntegerField(default = 0, db_column='score')
+    vote_up_count = models.IntegerField(default=0)
+    vote_down_count = models.IntegerField(default=0)
+
+    comment_count = models.PositiveIntegerField(default=0)
+    offensive_flag_count = models.SmallIntegerField(default=0)
 
     def __unicode__(self):
         return self.title
