@@ -59,9 +59,10 @@ class FavoriteArticle(models.Model):
         
         
 class Tag(models.Model):
+    """ contains info of tags"""
     word        = models.CharField(max_length=35)
     slug        = models.CharField(max_length=50)
-    created_at  = models.DateTimeField(auto_now_add=False)
+    created_at  = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
         return self.word
