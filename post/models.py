@@ -9,6 +9,8 @@ class Article(models.Model):
     content = RichTextField(config_name='awesome_ckeditor')
     creation_date = models.DateTimeField(auto_now_add=True)
     
+    tags = models.ManyToManyField(Tag,related_name='article_tags')
+    
     approved = models.BooleanField(default=False)
     view_count = models.PositiveIntegerField(default=0)
     favourite_count = models.PositiveIntegerField(default=0)
