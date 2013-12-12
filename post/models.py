@@ -55,4 +55,14 @@ class FavoriteArticle(models.Model):
         return unicode(self).encode('utf-8')
 
     def __unicode__(self):
-        return u'[%s] favorited at %s' %(self.user, self.added_at)        
+        return u'[%s] favorited at %s' %(self.user, self.added_at)
+        
+        
+class Tag(models.Model):
+    word        = models.CharField(max_length=35)
+    slug        = models.CharField(max_length=50)
+    created_at  = models.DateTimeField(auto_now_add=False)
+
+    def __unicode__(self):
+        return self.word
+        
