@@ -143,3 +143,8 @@ GOOGLE_OAUTH2_CLIENT_ID = '404204672487.apps.googleusercontent.com'
 GOOGLE_OAUTH2_CLIENT_SECRET = 'BNwr39QqbazblI0yTYtfLuHw'
 
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+           'rest_framework.authentication.SessionAuthentication',
+    )
+}
