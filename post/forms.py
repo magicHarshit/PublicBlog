@@ -5,7 +5,7 @@ from django import forms
 class ArticleAddForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ('title', 'content')
+        fields = ('title', 'content', 'tags')
 
 
 class CommentAddForm(forms.ModelForm):
