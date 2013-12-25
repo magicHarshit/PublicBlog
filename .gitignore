@@ -1,6 +1,7 @@
 *.py[cod]
 *.pyc
 
+
 # C extensions
 *.so
 
@@ -22,6 +23,9 @@ __pycache__
 
 # Installer logs
 pip-log.txt
+
+#settings
+settings.py
 
 # Unit test / coverage reports
 .coverage
