@@ -1,10 +1,10 @@
 from .models import Article, Tag
-from .serializer import ArticleSerializer, TagSerializer
+from .serializer import ArticleSerializer, TagSerializer, UserSerializer
 from .permissions import IsOwnerOrReadOnly
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework import permissions
-
+from django.contrib.auth.models import User
 
 
 class ArticleList(generics.ListCreateAPIView):
@@ -47,3 +47,19 @@ class TagDetail(generics.RetrieveUpdateDestroyAPIView):
     model = Tag
     serializer_class = TagSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class UserList(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def pre_save(self, obj):
+        obj.user = self.request.user
+
+
+class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
+
