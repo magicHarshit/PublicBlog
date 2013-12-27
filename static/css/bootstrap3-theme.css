@@ -1,0 +1,27 @@
+body {
+	/*background-color: #F2F4F5 !important;*/
+	padding-top: 70px;
+}
+
+.navbar {
+	background-color: #563D7C !important;
+}
+
+.navbar-brand {
+	color: #FFF !important;
+}
+
+.form-control {
+	margin: 10px auto !important;
+}
+img {
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	height: 100px;
+	width: 150px;
+}
+
+p {
+	text-align: justify;
+}
