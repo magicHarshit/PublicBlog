@@ -1,0 +1,15 @@
+<html lang="en" ng-app="blogWebsite">
+    <head>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/lib/angular.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/lib/angular-route.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/app.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/controllers.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/app.css">
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css">
+    </head>
+
+    <body>
+        <div ng-view></div>
+    </body>
+</html>

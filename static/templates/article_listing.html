@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            Search: <input ng-model="query">
+            Sort By:
+            <select ng-model="orderPhone">
+                <option value="name">Alphabetical Order</option>
+                <option value="age">Posted Date</option>
+            </select>
+        </div>
+
+        <div class="span10">
+            <ul class="phones">
+                <li ng-repeat="article in articles| filter:query" class="thumbnail">
+                    <a href="#">{{article.title}}</a>
+                    <p>
+                        {{ article.content }}
+                    </p>
+                    Posted By: {{ article.user }} on {{ article.creation_date }}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
