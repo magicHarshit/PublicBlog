@@ -19,7 +19,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 
     user_id = serializers.Field(source='user.id')
     user = serializers.Field(source='user.username')
-    tag_details = TagSerializer(source='tags')
+    tag_details = TagSerializer(source='tags', read_only=True)
 
     class Meta:
         model = Article
