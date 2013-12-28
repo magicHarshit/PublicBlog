@@ -7,7 +7,7 @@
         <div class="span10">
             <ul class="phones">
                 <li ng-repeat="article in articles| filter:query" class="thumbnail">
-                    <a href="#/article/{{{ article.id }}}">{{{ article.title }}}</a>
+                    <a href="#/articles/{{{ article.id }}}">{{{ article.title }}}</a>
                     <p>
                         {{{ article.content  }}}
                     </p>
