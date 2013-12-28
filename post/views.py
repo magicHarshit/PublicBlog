@@ -13,7 +13,6 @@ def home(request):
     posts = []
     return render_to_response('index.html', {'posts': posts}, context_instance=RequestContext(request))
 
-
 def log_out(request):
     logout(request)
     return HttpResponseRedirect('/')

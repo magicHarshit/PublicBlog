@@ -9,11 +9,11 @@
 
 var blogWebsiteControllers = angular.module('blogWebsiteControllers',[]);
 
-blogWebsiteControllers.controller('ArticleListController',function($scope,$http){
-    $http.get('/api/articles/?format=json').success(function(data){
-        $scope.articles = data
-    });
-});
+
+blogWebsiteControllers.controller('ArticleListController',['$scope','Articles',function($scope,Articles){
+    $scope.articles = Articles.query();
+}]);
+
 
 
 blogWebsiteControllers.controller('ArticleDetailController',function($scope,$routeParams, $http){
@@ -21,6 +21,17 @@ blogWebsiteControllers.controller('ArticleDetailController',function($scope,$rou
          $scope.article= data
    });
 });
+
+
+blogWebsiteControllers.controller('ArticlePostController',function($scope,$routeParams, $http){
+
+    $scope.save = function(){
+        $http.post('/api/articles/',$routeParams).success(function(data){
+            alert('success');
+        })
+    }
+});
+
 
 blogWebsiteControllers.controller('UserListController',function($scope,$http){
     $http.get('/api/users/?format=json').success(function(data){
