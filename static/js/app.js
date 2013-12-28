@@ -18,7 +18,7 @@ blogWebsite.config(['$routeProvider','$httpProvider','$interpolateProvider',
             templateUrl:'/static/templates/article_listing.html',
             controller:'ArticleListController'
         }).
-        when('/article/:articleID',{
+        when('/articles/:articleID',{
             templateUrl:'static/templates/article_detail.html',
             controller:'ArticleDetailController'
         }).
@@ -26,7 +26,7 @@ blogWebsite.config(['$routeProvider','$httpProvider','$interpolateProvider',
             templateUrl:'/static/templates/user_listing.html',
             controller:'UserListController'
         }).
-        when('/user/:userId',{
+        when('/users/:userId',{
             templateUrl:'/static/templates/user_detail.html',
             controller:'UserDetailController'
         }).

@@ -17,7 +17,7 @@ blogWebsiteControllers.controller('ArticleListController',function($scope,$http)
 
 
 blogWebsiteControllers.controller('ArticleDetailController',function($scope,$routeParams, $http){
-   $http.get('/api/article/' +$routeParams.articleID+'/?format=json').success(function(data){
+   $http.get('/api/articles/' +$routeParams.articleID+'/?format=json').success(function(data){
          $scope.article= data
    });
 });
@@ -29,7 +29,7 @@ blogWebsiteControllers.controller('UserListController',function($scope,$http){
 });
 
 blogWebsiteControllers.controller('UserDetailController',function($scope,$routeParams, $http){
-   $http.get('/api/user/' + $routeParams.userId +'/?format=json').success(function(data){
+   $http.get('/api/users/' + $routeParams.userId +'/?format=json').success(function(data){
          $scope.user= data
    });
 });

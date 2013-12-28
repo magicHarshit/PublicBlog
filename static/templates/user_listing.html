@@ -7,7 +7,7 @@
         <div class="span10">
             <ul class="phones">
                 <li ng-repeat="user in users| filter:query" class="thumbnail">
-                    <a href="#/user/{{{ user.id }}}">{{{ user.username }}}</a>
+                    <a href="#/users/{{{ user.id }}}/">{{{ user.username }}}</a>
                     <p>
                         {{{ user.email  }}}
                     </p>
