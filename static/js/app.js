@@ -1,6 +1,11 @@
+var blogWebsite = angular.module('blogWebsite',['ngRoute','ngCookies','blogWebsiteServices','blogWebsiteControllers']);
 
 
-var blogWebsite = angular.module('blogWebsite',['ngRoute','blogWebsiteControllers']);
+
+blogWebsite.run(function ($http, $cookies) {
+    $http.defaults.headers.common['X-CSRFToken'] = $cookies['csrftoken'];
+});
+
 
 blogWebsite.config(['$routeProvider','$httpProvider','$interpolateProvider',
     function($routeProvider,$httpProvider,$interpolateProvider){
@@ -12,6 +17,7 @@ blogWebsite.config(['$routeProvider','$httpProvider','$interpolateProvider',
 //  request.is_ajax will return True, ajax request will send the HTTP-header
     $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+
 //    this will be used for url-routing
     $routeProvider.
         when('/articles',{
@@ -21,6 +27,10 @@ blogWebsite.config(['$routeProvider','$httpProvider','$interpolateProvider',
         when('/articles/:articleID',{
             templateUrl:'static/templates/article_detail.html',
             controller:'ArticleDetailController'
+        }).
+        when('/article/post/',{
+            templateUrl:'/static/templates/article_post.html',
+            controller:'ArticlePostController'
         }).
         when('/users',{
             templateUrl:'/static/templates/user_listing.html',
