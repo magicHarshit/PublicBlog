@@ -10,6 +10,21 @@
     </head>
 
     <body>
+
+        <ul>
+		        <li><a href="#/users/">Users</a></li>
+                <li><a href="#/articles/">Articles</a></li>
+        </ul>
+
+        <ul>
+            {% if user.is_anonymous %}
+            <a href="{% url 'socialauth_begin' 'google-oauth2' %}">Login with Google</a>
+            {% else %}
+            <li>Welcome, {{ user }} </li>
+            <li><a href="{% url 'log_out' %}">Log out</a></li>
+            {% endif %}
+        </ul>
+
         <div ng-view></div>
     </body>
 </html>

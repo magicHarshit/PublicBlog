@@ -1,0 +1,20 @@
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            Search: <input ng-model="query">
+        </div>
+
+        <div class="span10">
+            <ul class="phones">
+                <li ng-repeat="user in users| filter:query" class="thumbnail">
+                    <a href="#/user/{{{ user.id }}}">{{{ user.username }}}</a>
+                    <p>
+                        {{{ user.email  }}}
+                    </p>
+                    Last seen on: {{{ user.last_login }}}
+                    Joined Date: {{{ user.date_joined }}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

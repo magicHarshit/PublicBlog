@@ -2,21 +2,20 @@
     <div class="row-fluid">
         <div class="span2">
             Search: <input ng-model="query">
-            Sort By:
-            <select ng-model="orderPhone">
-                <option value="name">Alphabetical Order</option>
-                <option value="age">Posted Date</option>
-            </select>
         </div>
 
         <div class="span10">
             <ul class="phones">
                 <li ng-repeat="article in articles| filter:query" class="thumbnail">
-                    <a href="#">{{article.title}}</a>
+                    <a href="#/article/{{{ article.id }}}">{{{ article.title }}}</a>
                     <p>
-                        {{ article.content }}
+                        {{{ article.content  }}}
                     </p>
-                    Posted By: {{ article.user }} on {{ article.creation_date }}
+                    Posted By: <a href="#/user/{{{article.user_id}}}"> {{{ article.user }}} </a> on {{{ article.creation_date }}}
+                    Tags:
+                     <div ng-repeat="tag in article.tag_details">
+                        {{{ tag.word }}}
+                     </div>
                 </li>
             </ul>
         </div>

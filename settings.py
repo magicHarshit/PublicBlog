@@ -95,6 +95,7 @@ INSTALLED_APPS = (
     'post',
     'social_auth',
     'rest_framework',
+    'djangular',
 )
 
 use_keys = default_keys
