@@ -12,16 +12,16 @@ urlpatterns = patterns('',
     #fetch all article
     url(r'^api/articles', ArticleList.as_view(), name='post'),
     #fetch article whose id== pk
-    url(r'^api/article/(?P<pk>[0-9]+)/$', ArticleDetail.as_view()),
+    url(r'^api/articles/(?P<pk>[0-9]+)/$', ArticleDetail.as_view()),
     #fetch all tags
     url(r'^api/tags', TagList.as_view()),
     #fetch tag whose id==pk
-    url(r'^api/tag/(?P<pk>[0-9]+)/$', TagDetail.as_view()),
+    url(r'^api/tags/(?P<pk>[0-9]+)/$', TagDetail.as_view()),
 
     #fetch all users
     url(r'^api/users', UserList.as_view()),
     #fetch user whose id==pk
-    url(r'^api/user/(?P<pk>[0-9]+)/$', UserDetail.as_view()),
+    url(r'^api/users/(?P<pk>[0-9]+)/$', UserDetail.as_view()),
 
     #ckeditor-urls
     (r'^ckeditor/', include('ckeditor.urls')),
