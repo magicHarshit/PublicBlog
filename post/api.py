@@ -73,3 +73,8 @@ class CommentList(generics.ListCreateAPIView):
         article_id = self.kwargs.get('article_id')
         return queryset.filter(post_id= article_id)
 
+class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
+
