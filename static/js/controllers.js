@@ -26,9 +26,16 @@ blogWebsiteControllers.controller('ArticleDetailController',function($scope,$rou
 blogWebsiteControllers.controller('ArticlePostController',function($scope,$routeParams, $http){
 
     $scope.save = function(){
-        $http.post('/api/articles/',$routeParams).success(function(data){
-            alert('success');
-        })
+        $http.post('/api/articles/',{'title':$scope.title,'content':$scope.content}).
+            success(function(data){
+                $scope.title = ''
+                $scope.content = ''
+                $scope.article = data
+                $scope.error = false
+            }).
+            error(function(data,status,confiq,header){
+                $scope.error = data
+            })
     }
 });
 
