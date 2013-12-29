@@ -1,5 +1,5 @@
-from .models import Article, Tag
-from .serializer import ArticleSerializer, TagSerializer, UserSerializer
+from .models import Article, Tag, Comment
+from .serializer import ArticleSerializer, TagSerializer, UserSerializer, CommentSerializer
 from .permissions import IsOwnerOrReadOnly
 from rest_framework import generics
 from rest_framework.response import Response
@@ -62,4 +62,14 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
+
+
+class CommentList(generics.ListCreateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+
+    def get_queryset(self):
+        queryset = Comment.objects.all()
+        article_id = self.kwargs.get('article_id')
+        return queryset.filter(post_id= article_id)
 
