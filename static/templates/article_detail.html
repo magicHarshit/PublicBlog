@@ -3,3 +3,10 @@
 <p>
 {{{ article.content }}}
 </p>
+
+
+comments:
+<li ng-repeat="comment in comments">
+    {{{comment.content}}} by
+    {{{comment.user}}}
+</li>

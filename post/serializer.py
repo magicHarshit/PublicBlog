@@ -8,7 +8,6 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
 
 
-
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
@@ -26,10 +25,12 @@ class ArticleSerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'content', 'creation_date', 'user', 'tags','tag_details','user_id')
         read_only_fields = ('id', 'creation_date',)
 
+
 class CommentSerializer(serializers.ModelSerializer):
+    user = serializers.Field(source='user.username')
 
     class Meta:
         model = Comment
-        # fields = ('comment',)
+        fields = ('content', 'user',)
 
 

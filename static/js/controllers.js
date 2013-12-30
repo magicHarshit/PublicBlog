@@ -20,6 +20,10 @@ blogWebsiteControllers.controller('ArticleDetailController',function($scope,$rou
    $http.get('/api/articles/' +$routeParams.articleID+'/?format=json').success(function(data){
          $scope.article= data
    });
+   $http.get('/api/article/' +$routeParams.articleID+'/comments/?format=json').success(function(data){
+         $scope.comments= data
+   })
+
 });
 
 
@@ -28,9 +32,9 @@ blogWebsiteControllers.controller('ArticlePostController',function($scope,$route
     $scope.save = function(){
         $http.post('/api/articles/',{'title':$scope.title,'content':$scope.content}).
             success(function(data){
-                $scope.title = ''
-                $scope.content = ''
-                $scope.article = data
+                $scope.title = '';
+                $scope.content = '';
+                $scope.article = data;
                 $scope.error = false
             }).
             error(function(data,status,confiq,header){
