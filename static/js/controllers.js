@@ -22,8 +22,17 @@ blogWebsiteControllers.controller('ArticleDetailController',function($scope,$rou
    });
    $http.get('/api/article/' +$routeParams.articleID+'/comments/?format=json').success(function(data){
          $scope.comments= data
-   })
-
+   });
+   $scope.addComment = function(){
+       $http.post('/api/article/' +$routeParams.articleID+'/comments/',{'content':$scope.content}).
+           success(function(data){
+                $scope.content = ''
+                $scope.comment= data
+           }).
+          error(function(data){
+                $scope.error = data
+          })
+   }
 });
 
 

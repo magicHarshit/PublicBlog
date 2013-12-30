@@ -74,6 +74,8 @@ class CommentList(generics.ListCreateAPIView):
         return queryset.filter(post_id= article_id)
 
     def pre_save(self, obj):
+        article_id = self.kwargs.get('article_id')
+        obj.post_id = article_id
         obj.user = self.request.user
 
 
