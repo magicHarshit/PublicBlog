@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-from post.api import ArticleList, ArticleDetail, TagDetail, TagList, UserList, UserDetail, CommentList
+from post.api import ArticleList, ArticleDetail, TagDetail, TagList, UserList, UserDetail, CommentList, CommentDetail
 
 urlpatterns = patterns('',
     #home-page
@@ -24,6 +24,8 @@ urlpatterns = patterns('',
     url(r'^api/users/(?P<pk>[0-9]+)/$', UserDetail.as_view()),
     #fetch comments of a article.
     url(r'^api/article/(?P<article_id>[0-9]+)/comments/$', CommentList.as_view()),
+
+    url(r'^api/comment/(?P<pk>[0-9]+)/$', CommentDetail.as_view()),
 
     #ckeditor-urls
     (r'^ckeditor/', include('ckeditor.urls')),

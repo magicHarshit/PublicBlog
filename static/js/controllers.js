@@ -32,7 +32,16 @@ blogWebsiteControllers.controller('ArticleDetailController',function($scope,$rou
           error(function(data){
                 $scope.error = data
           })
+   };
+   $scope.deleteComment = function(comment){
+      $http.delete('/api/comment/'+comment.id+'/').success(function(data){
+            alert('deleted');
+      }).
+      error(function(data){
+              $scope.comment_deletion_error = data
+          })
    }
+
 });
 
 

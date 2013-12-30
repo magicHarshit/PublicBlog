@@ -7,8 +7,10 @@
 
 comments:
 <li ng-repeat="comment in comments">
+    {{{cooment_deletion_error}}}
     {{{comment.content}}} by
     {{{comment.user}}}
+    <button ng-click="deleteComment(comment)">Delete</button>
 </li>
 <li>
 {{{comment.content}}} by
