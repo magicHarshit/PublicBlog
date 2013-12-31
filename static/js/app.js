@@ -1,4 +1,4 @@
-var blogWebsite = angular.module('blogWebsite',['ngRoute','ngCookies','blogWebsiteServices','blogWebsiteControllers']);
+var blogWebsite = angular.module('blogWebsite',['ngRoute','ngCookies','blogWebsiteServices','blogWebsiteControllers','ui.tinymce']);
 
 
 

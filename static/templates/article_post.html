@@ -2,7 +2,8 @@
     {{{error.title.0}}}
     <input type="text" ng-model="title" placeholder="Title">
     {{{error.content.0}}}
-    <input type="text" ng-model="content" placeholder="Body">
+
+    <textarea ui-tinymce ng-model="content"></textarea>
 
     <button ng-click="save()">Add Post</button>
     <br>
