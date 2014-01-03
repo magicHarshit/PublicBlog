@@ -13,7 +13,11 @@ Python>=2.7
 
 django>=1.5
 
-angularjs
+angularjs>=1.2.x
+
+bower
+
+firebase
 
 
 
