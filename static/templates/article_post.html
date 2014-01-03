@@ -5,10 +5,17 @@
 
     <textarea ui-tinymce ng-model="content"></textarea>
 
+    <input type="text" ng-model="tags" placeholder="Tag" typeahead="tag for tag in getTag($viewValue) | filter:$viewValue">
+
+    <div ng-show="user.username">
     <button ng-click="save()">Add Post</button>
+    </div>
+    <div ng-hide="user.username">
+        Login to Post Article
+    </div>
+
     <br>
     {{{article}}}
 
-    {{{user.username}}}
 
 </form>

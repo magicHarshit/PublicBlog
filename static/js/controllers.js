@@ -47,6 +47,17 @@ blogWebsiteControllers.controller('ArticleDetailController',function($scope,$rou
 
 blogWebsiteControllers.controller('ArticlePostController',function($scope,$routeParams, $http){
 
+    $scope.getTag = function(val) {
+    return $http.get('/api/tags/?format=json').
+    then(function(res){
+      var tags = [];
+      angular.forEach(res.data, function(item){
+        tags.push(item.word);
+      });
+      return tags;
+    });
+  };
+
     $scope.save = function(){
         $http.post('/api/articles/',{'title':$scope.title,'content':$scope.content}).
             success(function(data){

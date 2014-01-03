@@ -1,14 +1,20 @@
-var blogWebsite = angular.module('blogWebsite',['ngRoute','ngCookies','blogWebsiteServices','blogWebsiteControllers','ui.tinymce','firebase']);
+var blogWebsite = angular.module('blogWebsite',['ngRoute','ngCookies',
+                                                'blogWebsiteServices',
+                                                'blogWebsiteControllers',
+                                                'ui.tinymce',
+                                                'firebase','ui.bootstrap']);
 
 
 
 blogWebsite.run(function ($http, $cookies, $rootScope, $firebaseAuth) {
-
+//    now useless no need for firebase autehntication
     var url = new Firebase('https://public-blog.firebaseio.com/');
     $rootScope.auth = $firebaseAuth(url);
+//  setting global scope of user
     $http.get('/get_user/').success(function(data){
         $rootScope.user = data
         });
+//    setting csrf token
     $http.defaults.headers.common['X-CSRFToken'] = $cookies['csrftoken'];
 });
 

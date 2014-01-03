@@ -10,12 +10,20 @@ comments:
     {{{cooment_deletion_error}}}
     {{{comment.content}}} by
     {{{comment.user}}}
-    <button ng-click="deleteComment(comment)">Delete</button>
+    <div ng-if="comment.user==user.username">
+        <button ng-click="deleteComment(comment)">Delete</button>
+    </div>
+
 </li>
 <li>
 {{{comment.content}}} by
 {{{comment.user}}}
 </li>
+
+
+
+
+<div ng-show="user.id">
 Comment Post form
 <form>
     {{{error.content.0}}}
@@ -23,3 +31,7 @@ Comment Post form
     <button ng-click="addComment()">Add Comment</button>
     <br>
 </form>
+</div>
+<div ng-hide="user.id">
+    <a href="http://127.0.0.1:8000/login/google-oauth2"> Login to Post Comment</a>
+</div>
