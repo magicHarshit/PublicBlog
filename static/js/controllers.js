@@ -26,7 +26,7 @@ blogWebsiteControllers.controller('ArticleDetailController',function($scope,$rou
    $scope.addComment = function(){
        $http.post('/api/article/' +$routeParams.articleID+'/comments/',{'content':$scope.content}).
            success(function(data){
-                $scope.content = ''
+                $scope.content = '';
                 $scope.comment= data
            }).
           error(function(data){
@@ -45,10 +45,7 @@ blogWebsiteControllers.controller('ArticleDetailController',function($scope,$rou
 });
 
 
-blogWebsiteControllers.controller('ArticlePostController',function($scope,$routeParams, $http,$firebaseAuth){
-
-    var url = new Firebase('https://public-blog.firebaseio.com/');
-    $scope.auth = $firebaseAuth(url);
+blogWebsiteControllers.controller('ArticlePostController',function($scope,$routeParams, $http){
 
     $scope.save = function(){
         $http.post('/api/articles/',{'title':$scope.title,'content':$scope.content}).

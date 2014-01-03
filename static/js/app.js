@@ -2,7 +2,13 @@ var blogWebsite = angular.module('blogWebsite',['ngRoute','ngCookies','blogWebsi
 
 
 
-blogWebsite.run(function ($http, $cookies) {
+blogWebsite.run(function ($http, $cookies, $rootScope, $firebaseAuth) {
+
+    var url = new Firebase('https://public-blog.firebaseio.com/');
+    $rootScope.auth = $firebaseAuth(url);
+    $http.get('/get_user/').success(function(data){
+        $rootScope.user = data
+        });
     $http.defaults.headers.common['X-CSRFToken'] = $cookies['csrftoken'];
 });
 

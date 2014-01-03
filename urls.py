@@ -35,6 +35,8 @@ urlpatterns = patterns('',
     url(r'^/complete/google-oauth2/$', 'post.views.home', name='home'),
     #to flush out the session
     url(r'^log_out', 'post.views.log_out', name='log_out'),
+
+    url(r'^get_user', 'post.views.get_user'),
 )
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
