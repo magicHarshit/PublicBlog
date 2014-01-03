@@ -1,9 +1,14 @@
 <html lang="en" ng-app="blogWebsite">
     <head>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/lib/angular.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/lib/angular-route.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/lib/angular-resource.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/lib/angular-cookies.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
+
+        <script src="//cdn.firebase.com/v0/firebase.js"></script>
+        <script src="//cdn.firebase.com/v0/firebase-simple-login.js"></script>
+        <script src="//cdn.firebase.com/libs/angularfire/0.5.0/angularfire.min.js"></script>
+
+        <script src="//code.angularjs.org/1.2.6/angular-route.js"></script>
+        <script type="text/javascript" src="http://code.angularjs.org/1.2.6/angular-resource.min.js"></script>
+        <script type="text/javascript" src="http://code.angularjs.org/1.2.6/angular-cookies.min.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/app.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/services.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/controllers.js"></script>
@@ -11,8 +16,10 @@
         <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css">
 
         <script type="text/javascript" src="{{ STATIC_URL }}bower_components/tinymce/tinymce.min.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}bower_components/angular/angular.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}bower_components/angular-ui-tinymce/src/tinymce.js"></script>
+
+
+
     </head>
     <body>
         <ul>

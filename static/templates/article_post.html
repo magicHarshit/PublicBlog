@@ -8,4 +8,13 @@
     <button ng-click="save()">Add Post</button>
     <br>
     {{{article}}}
+
+
+    <div class="facebook-login">
+        <a href="#" ng-hide="auth.user" ng-click="auth.$login('github')"><span> LogIn with Git</span></a>
+    </div>
+
+    {{{auth.user.username}}}
+
+
 </form>

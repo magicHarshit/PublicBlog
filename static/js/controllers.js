@@ -45,7 +45,10 @@ blogWebsiteControllers.controller('ArticleDetailController',function($scope,$rou
 });
 
 
-blogWebsiteControllers.controller('ArticlePostController',function($scope,$routeParams, $http){
+blogWebsiteControllers.controller('ArticlePostController',function($scope,$routeParams, $http,$firebaseAuth){
+
+    var url = new Firebase('https://public-blog.firebaseio.com/');
+    $scope.auth = $firebaseAuth(url);
 
     $scope.save = function(){
         $http.post('/api/articles/',{'title':$scope.title,'content':$scope.content}).
