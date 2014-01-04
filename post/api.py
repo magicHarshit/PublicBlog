@@ -19,7 +19,7 @@ class ArticleList(generics.ListCreateAPIView):
 class ArticleDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 class TagList(generics.ListAPIView):
@@ -36,7 +36,7 @@ class TagList(generics.ListAPIView):
         queryset = Tag.objects.all()
         query = self.request.QUERY_PARAMS.get('q', None)
         if query is not None:
-            queryset = queryset.filter(word__icontains=query)
+            queryset = queryset.filter(name__icontains=query)
         return queryset
 
 

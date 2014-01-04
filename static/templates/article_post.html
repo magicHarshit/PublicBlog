@@ -5,8 +5,30 @@
 
     <textarea ui-tinymce ng-model="content"></textarea>
 
-    <input type="text" ng-model="tags" placeholder="Tag" typeahead="tag for tag in getTag($viewValue) | filter:$viewValue">
 
+
+
+  <div class="control-group">
+        <label class="control-label" for="tags">Tags</label>
+        <div class="controls"><div>
+        <span class="tag btn btn-info btn-small" ng-repeat="tag in tags_details">
+            {{{tag.name}}}
+            <i class="icon-white icon-remove remove-tag"
+               ng-click="removeTag(tag)"></i>
+        </span>
+  </div>
+  <div id="list-members-add">
+    <input type="text" placeholder="Add tags"
+           class="ui-autocomplete-input"
+           ng-model="selectedTag"
+           autocomplete="off"
+           typeahead="suggestion as suggestion.name for suggestion in getTag($viewValue)">
+  </div>
+  <button ng-click="selectTag()">Select Tag</button>
+
+
+
+    <br>
     <div ng-show="user.username">
     <button ng-click="save()">Add Post</button>
     </div>

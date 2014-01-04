@@ -1,8 +1,16 @@
 <h2>{{{ article.title }}}</h2>
 
+<div ng-show="user.username">
+    <a ng-click="voteUp(article)">Vote Up</a>
+    <a ng-click="voteDown(article)">Vote Down</a>
+</div>
+
 <p>
 {{{ article.content }}}
 </p>
+
+
+
 
 
 comments:

@@ -1,18 +1,24 @@
 from django.contrib.auth.models import User
 from django.db import models
 from ckeditor.fields import RichTextField
+from django.template.defaultfilters import slugify
 import const
 import datetime
 
 
 class Tag(models.Model):
     """ contains info of tags"""
-    word = models.CharField(max_length=35)
+    name = models.CharField(max_length=35)
     slug = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
-        return self.word
+        return "%s" % self.name
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.slug = slugify(self.name)
+        super(Tag, self).save(*args, **kwargs)
 
 
 class Article(models.Model):
@@ -46,6 +52,15 @@ class Article(models.Model):
 
     def __unicode__(self):
         return self.title
+
+
+class Vote(models.Model):
+    user = models.ForeignKey(User)
+    article = models.ForeignKey(Article)
+    vote_type = models.IntegerField(default=0,choices=const.VOTE_TYPE)
+
+    def __unicode__(self):
+        return self.user
 
 
 class Comment(models.Model):

@@ -40,26 +40,48 @@ blogWebsiteControllers.controller('ArticleDetailController',function($scope,$rou
       error(function(data){
               $scope.comment_deletion_error = data
           })
+   };
+   $scope.voteUp = function(article){
+     $http.put('/api/articles/'+article.id+'/',{'vote_up_count':1}).success(function(data){
+         alert('success');
+     }).
+     error(function(data){
+        alert('error');
+     })
    }
+
 
 });
 
 
-blogWebsiteControllers.controller('ArticlePostController',function($scope,$routeParams, $http){
+blogWebsiteControllers.controller('ArticlePostController',function($scope,$routeParams, $http,TagService){
 
-    $scope.getTag = function(val) {
-    return $http.get('/api/tags/?format=json').
-    then(function(res){
-      var tags = [];
-      angular.forEach(res.data, function(item){
-        tags.push(item.word);
-      });
-      return tags;
-    });
-  };
+   $scope.tags = [];
+   $scope.tags_details = [];
+
+    $scope.getTag = function (text) {
+        return TagService.query(text).then(function (data) {
+            return data;
+        }, function (status) {
+            console.log(status);
+        });
+    };
+    $scope.selectTag = function () {
+        if (typeof $scope.selectedTag === 'object') {
+            $scope.tags.push($scope.selectedTag.id);
+            $scope.tags_details.push($scope.selectedTag);
+            $scope.selectedTag = null;
+        }
+    };
+    $scope.removeTag = function (category) {
+        var index = $scope.tags_details.indexOf(category);
+        $scope.tags_details.splice(index, 1);
+        var index = $scope.tags.indexOf(category.url);
+        $scope.tags.splice(index, 1);
+    } ;
 
     $scope.save = function(){
-        $http.post('/api/articles/',{'title':$scope.title,'content':$scope.content}).
+        $http.post('/api/articles/',{'title':$scope.title,'content':$scope.content,'tags':$scope.tags}).
             success(function(data){
                 $scope.title = '';
                 $scope.content = '';

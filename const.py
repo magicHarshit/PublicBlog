@@ -13,3 +13,8 @@ CLOSE_REASONS = (
     (8, _('spam or advertising')),
     (9, _('too localized')),
 )
+VOTE_TYPE = (
+    (+1,'VOTE_UP'),
+    (0,'NEUTRAL'),
+    (-1,'VOTE_DOWN')
+)

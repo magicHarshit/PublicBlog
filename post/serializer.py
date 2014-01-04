@@ -8,10 +8,10 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
 
 
-class TagSerializer(serializers.ModelSerializer):
+class TagSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Tag
-        fields = ('word',)
+        fields = ('name','id',)
 
 
 class ArticleSerializer(serializers.ModelSerializer):
@@ -22,7 +22,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Article
-        fields = ('id', 'title', 'content', 'creation_date', 'user', 'tags','tag_details','user_id')
+        fields = ('id', 'title', 'content', 'creation_date', 'user', 'tags','tag_details','user_id','vote_up_count','vote_down_count')
         read_only_fields = ('id', 'creation_date',)
 
 
