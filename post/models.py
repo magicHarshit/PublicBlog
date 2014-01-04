@@ -44,7 +44,7 @@ class Article(models.Model):
                                         )
     deleted = models.BooleanField(default=False, db_index=True)
     points = models.IntegerField(default=0, db_column='score')
-    
+
     comment_count = models.PositiveIntegerField(default=0)
     offensive_flag_count = models.SmallIntegerField(default=0)
 

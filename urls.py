@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-from post.api import ArticleList, ArticleDetail, TagDetail, TagList, UserList, UserDetail, CommentList, CommentDetail
+from post.api import ArticleList, ArticleDetail, TagDetail, TagList, UserList, UserDetail, CommentList, CommentDetail, VoteList
 
 urlpatterns = patterns('',
     #home-page
@@ -37,6 +37,9 @@ urlpatterns = patterns('',
     url(r'^log_out', 'post.views.log_out', name='log_out'),
 
     url(r'^get_user', 'post.views.get_user'),
+
+    url(r'^api/vote/$', VoteList.as_view()),
+
 )
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns

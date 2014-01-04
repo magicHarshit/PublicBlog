@@ -1,5 +1,5 @@
-from .models import Article, Tag, Comment
-from .serializer import ArticleSerializer, TagSerializer, UserSerializer, CommentSerializer
+from .models import Article, Tag, Comment, Vote
+from .serializer import ArticleSerializer, TagSerializer, UserSerializer, CommentSerializer, VoteSerializer
 from .permissions import IsOwnerOrReadOnly
 from rest_framework import generics
 from rest_framework.response import Response
@@ -83,4 +83,13 @@ class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
+
+
+class VoteList(generics.ListCreateAPIView):
+    queryset = Vote.objects.all()
+    serializer_class = VoteSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def pre_save(self,obj):
+        obj.user = self.request.user
 
