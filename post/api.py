@@ -88,14 +88,23 @@ class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
 class VoteList(generics.ListCreateAPIView):
     queryset = Vote.objects.all()
     serializer_class = VoteSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def pre_save(self,obj):
         obj.user = self.request.user
+
+    def get_queryset(self):
+        queryset = Vote.objects.all()
+        query = self.request.QUERY_PARAMS.get('q', None)
+        if query is not None:
+            queryset = queryset.filter(article_id=query, user=self.request.user)
+        return queryset
 
 
 class VoteDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Vote.objects.all()
     serializer_class = VoteSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
+
+
+
 

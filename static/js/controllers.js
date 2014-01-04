@@ -19,10 +19,22 @@ blogWebsiteControllers.controller('ArticleListController',['$scope','Articles',f
 blogWebsiteControllers.controller('ArticleDetailController',function($scope,$routeParams, $http){
    $http.get('/api/articles/' +$routeParams.articleID+'/?format=json').success(function(data){
          $scope.article= data
+
    });
    $http.get('/api/article/' +$routeParams.articleID+'/comments/?format=json').success(function(data){
          $scope.comments= data
    });
+
+   if ($scope.user.username){
+        $http.get('/api/vote/?q='+$routeParams.articleID).success(function(data){
+            if (data.length>0){
+                $scope.userVote = data[0].vote_type
+            }else{
+                $scope.userVote = 0
+            }
+        });
+   }
+
    $scope.addComment = function(){
        $http.post('/api/article/' +$routeParams.articleID+'/comments/',{'content':$scope.content}).
            success(function(data){
@@ -42,11 +54,16 @@ blogWebsiteControllers.controller('ArticleDetailController',function($scope,$rou
           })
    };
    $scope.voteUp = function(article){
-     $http.put('/api/articles/'+article.id+'/',{'vote_up_count':1}).success(function(data){
-         alert('success');
-     }).
-     error(function(data){
-        alert('error');
+     $http.post('/api/update_vote/',{'article':article.id,'vote_type':1}).success(function(data){
+        $scope.userVote = 1;
+        $scope.$apply();
+     })
+   };
+   $scope.voteDown = function(article){
+     $http.post('/api/update_vote/',{'article':article.id,'vote_type':-1}).success(function(data){
+        $scope.userVote = -1;
+        $scope.$apply();
+
      })
    }
 

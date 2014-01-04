@@ -42,6 +42,8 @@ urlpatterns = patterns('',
 
     url(r'^api/vote/(?P<pk>[0-9]+)/$', VoteDetail.as_view()),
 
+    url(r'^api/update_vote/$','post.views.create_or_update_vote')
+
 )
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns

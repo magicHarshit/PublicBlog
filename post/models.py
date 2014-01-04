@@ -58,7 +58,7 @@ class Vote(models.Model):
     vote_type = models.IntegerField(default=0,choices=const.VOTE_TYPE)
 
     def __unicode__(self):
-        return self.user
+        return str(self.id)
 
 
 class Comment(models.Model):

@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponseRedirect
-from post.models import Article, Comment
+from post.models import Article, Comment, Vote
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
@@ -26,3 +26,20 @@ def get_user(request):
     data = {'username': username, 'authenticated':authenticated,'id':user_id}
     data = json.dumps(data)
     return HttpResponse(data)
+
+
+def create_or_update_vote(request):
+    post_data = json.loads(request.raw_post_data)
+    article_id = post_data['article']
+    vote_type = post_data['vote_type']
+    user_id = request.user.id
+
+    vote_obj,created = Vote.objects.get_or_create(article_id=article_id,user_id=user_id)
+    vote_obj.vote_type = vote_type
+    vote_obj.save()
+    data = {'success': 'success'}
+    data = json.dumps(data)
+    return HttpResponse(data)
+
+
+

@@ -34,7 +34,14 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = ('content', 'user','id',)
 
 class VoteSerializer(serializers.ModelSerializer):
+    user = serializers.Field(source='user.username')
     class Meta:
         model = Vote
+        fields = ('user', 'article', 'vote_type','id')
+
+
+
+
+
 
 
