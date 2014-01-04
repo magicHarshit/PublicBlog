@@ -93,3 +93,9 @@ class VoteList(generics.ListCreateAPIView):
     def pre_save(self,obj):
         obj.user = self.request.user
 
+
+class VoteDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Vote.objects.all()
+    serializer_class = VoteSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
+
