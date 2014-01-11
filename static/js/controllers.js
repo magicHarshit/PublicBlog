@@ -65,8 +65,12 @@ blogWebsiteControllers.controller('ArticleDetailController',function($scope,$rou
         $scope.$apply();
 
      })
+   };
+   $scope.markFav = function(article){
+       $http.post('/api/fav_articles/',{'article':article.id}).success(function(data){
+           alert('marked fav successful')
+       })
    }
-
 
 });
 
