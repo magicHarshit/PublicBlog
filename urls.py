@@ -3,7 +3,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 from post.api import ArticleList, ArticleDetail, TagDetail, TagList, UserList, UserDetail, \
-    CommentList, CommentDetail, VoteList, VoteDetail
+    CommentList, CommentDetail, VoteList, VoteDetail, FavoriteArticleList
 
 urlpatterns = patterns('',
     #home-page
@@ -45,7 +45,9 @@ urlpatterns = patterns('',
 
     url(r'^api/update_vote/$','post.views.create_or_update_vote'),
 
-    url(r'^api/count_points/$','post.views.calculate_points')
+    url(r'^api/count_points/$','post.views.calculate_points'),
+
+    url(r'^api/fav_articles/$',FavoriteArticleList.as_view()),
 
 )
 

@@ -70,7 +70,7 @@ class Comment(models.Model):
     def __unicode__(self):
         return self.content
 
-        
+#todo. article and user combination should be unique
 class FavoriteArticle(models.Model):
     """A favorite Article of a User."""
     article = models.ForeignKey(Article)

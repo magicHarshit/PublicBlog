@@ -1,5 +1,5 @@
-from .models import Article, Tag, Comment, Vote
-from .serializer import ArticleSerializer, TagSerializer, UserSerializer, CommentSerializer, VoteSerializer
+from .models import Article, Tag, Comment, Vote, FavoriteArticle
+from .serializer import ArticleSerializer, TagSerializer, UserSerializer, CommentSerializer, VoteSerializer, FavoriteArticleSerializer
 from .permissions import IsOwnerOrReadOnly
 from rest_framework import generics
 from rest_framework.response import Response
@@ -106,4 +106,7 @@ class VoteDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
 
 
+class FavoriteArticleList(generics.ListCreateAPIView ):
+    queryset = FavoriteArticle.objects.all()
+    serializer_class = FavoriteArticleSerializer
 

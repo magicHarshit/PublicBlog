@@ -47,6 +47,8 @@ class PointSerializer(serializers.ModelSerializer):
 
 
 class FavoriteArticleSerializer(serializers.ModelSerializer):
+    # user = serializers.Field(source='user.username')
+
     class Meta:
-        Model = FavoriteArticle
+        model = FavoriteArticle
         fields = ('article','user',)
