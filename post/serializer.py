@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Article, Tag, Comment, Vote
+from .models import Article, Tag, Comment, Vote, FavoriteArticle
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -38,10 +38,15 @@ class VoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vote
         fields = ('user', 'article', 'vote_type','id')
-        # fields = ('id',)
+
 
 class PointSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vote
         fields = ('points',)
 
+
+class FavoriteArticleSerializer(serializers.ModelSerializer):
+    class Meta:
+        Model = FavoriteArticle
+        fields = ('article','user',)
