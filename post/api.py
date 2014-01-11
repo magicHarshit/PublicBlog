@@ -114,3 +114,8 @@ class FavoriteArticleList(generics.ListCreateAPIView ):
     def pre_save(self,obj):
         obj.user = self.request.user
 
+    def get_queryset(self):
+        user = self.request.user
+        queryset = FavoriteArticle.objects.filter(user=user)
+        return queryset
+
