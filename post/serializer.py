@@ -38,10 +38,10 @@ class VoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vote
         fields = ('user', 'article', 'vote_type','id')
+        # fields = ('id',)
 
-
-
-
-
-
+class PointSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Vote
+        fields = ('points',)
 

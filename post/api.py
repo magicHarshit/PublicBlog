@@ -107,4 +107,3 @@ class VoteDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 
-

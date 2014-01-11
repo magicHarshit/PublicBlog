@@ -42,4 +42,20 @@ def create_or_update_vote(request):
     return HttpResponse(data)
 
 
+def calculate_points(request):
+    user = json.loads(request.raw_post_data).get('user')
+    vote_down_count_by_user = Vote.objects.filter(user=user, vote_type=-1).count()
+    points_on_vote_down = vote_down_count_by_user*-2
+
+    vote_up_count_on_articles_of_user = Vote.objects.filter(article__user=user,vote_type=1).count()
+    vote_down_count_on_articles_of_user = Vote.objects.filter(article__user=user,vote_type=-1).count()
+
+    total_votes_for_articles = vote_up_count_on_articles_of_user-vote_down_count_on_articles_of_user
+    points_for_articles = total_votes_for_articles*10
+    points = points_for_articles - points_on_vote_down
+    data = json.dumps({'points':points})
+    return HttpResponse(data)
+
+
+
 

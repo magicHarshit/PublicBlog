@@ -2,7 +2,8 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-from post.api import ArticleList, ArticleDetail, TagDetail, TagList, UserList, UserDetail, CommentList, CommentDetail, VoteList, VoteDetail
+from post.api import ArticleList, ArticleDetail, TagDetail, TagList, UserList, UserDetail, \
+    CommentList, CommentDetail, VoteList, VoteDetail
 
 urlpatterns = patterns('',
     #home-page
@@ -42,7 +43,9 @@ urlpatterns = patterns('',
 
     url(r'^api/vote/(?P<pk>[0-9]+)/$', VoteDetail.as_view()),
 
-    url(r'^api/update_vote/$','post.views.create_or_update_vote')
+    url(r'^api/update_vote/$','post.views.create_or_update_vote'),
+
+    url(r'^api/count_points/$','post.views.calculate_points')
 
 )
 

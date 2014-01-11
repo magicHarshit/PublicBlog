@@ -122,4 +122,7 @@ blogWebsiteControllers.controller('UserDetailController',function($scope,$routeP
    $http.get('/api/users/' + $routeParams.userId +'/?format=json').success(function(data){
          $scope.user= data
    });
+   $http.post('/api/count_points/?format=json',{'user':$routeParams.userId}).success(function(data){
+         $scope.points = data.points
+   });
 });

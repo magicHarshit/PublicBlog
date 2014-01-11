@@ -55,7 +55,7 @@ class Article(models.Model):
 class Vote(models.Model):
     user = models.ForeignKey(User)
     article = models.ForeignKey(Article)
-    vote_type = models.IntegerField(default=0,choices=const.VOTE_TYPE)
+    vote_type = models.IntegerField(default=0, choices=const.VOTE_TYPE)
 
     def __unicode__(self):
         return str(self.id)
