@@ -109,4 +109,8 @@ class VoteDetail(generics.RetrieveUpdateDestroyAPIView):
 class FavoriteArticleList(generics.ListCreateAPIView ):
     queryset = FavoriteArticle.objects.all()
     serializer_class = FavoriteArticleSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
+
+    def pre_save(self,obj):
+        obj.user = self.request.user
 
